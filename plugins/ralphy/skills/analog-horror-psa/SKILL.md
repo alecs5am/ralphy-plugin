@@ -212,8 +212,7 @@ for f in artifacts/images/*.png; do
 done
 
 # 7. Voice pre-flight + sequential VO
-xh GET "https://api.elevenlabs.io/v1/voices/<voice-id>" \
-  "xi-api-key:$ELEVENLABS_API_KEY" | jq .voice_id  # must not 404
+ralphy voice list | jq -e '.voices[] | select(.voice_id == "<voice-id>")'  # must match; add the voice to your ElevenLabs account first
 for slot in scene-01 scene-02 ... scene-09; do
   ralphy generate voiceover --project <id> --slot "$slot" \
     --voice <voice-id> --text "$(cat prompts/vo-$slot.txt)"

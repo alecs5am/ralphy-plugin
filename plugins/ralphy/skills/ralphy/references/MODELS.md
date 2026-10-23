@@ -281,7 +281,7 @@ Voice picks: Adam (`pNInz6obpgDQGcFmaJgB`) for dramatic narrator, Brian (`nPczCj
 **Endpoint contract** (for `cli/lib/providers/media.ts → generateMusic()`):
 ```
 POST https://api.elevenlabs.io/v1/music
-Headers: xi-api-key: $ELEVENLABS_API_KEY, Content-Type: application/json
+Headers: xi-api-key: <ElevenLabs key from `ralphy setup`>, Content-Type: application/json
 Body: { "prompt": "...", "music_length_ms": 30000, "force_instrumental": true, "output_format": "mp3_44100_128", "model_id": "music_v1" }
 Response: 200 → binary mp3 (application/octet-stream)
          400 → JSON ToS rejection (`bad_prompt`) — see "Prompt content policy"

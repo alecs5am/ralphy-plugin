@@ -49,6 +49,21 @@ BASE_REFERENCES = [
 # Repo-relative doc references that are never bundled (dev-only context).
 NEVER_BUNDLE = re.compile(r"^(docs/(developing-ralphy|release-runbook|superpowers|migration-|render-test-|template-audit-|architecture|branding)|notes/|cli/|scripts/|tests/|apps/)")
 REF_PATTERN = re.compile(r"(?<![\w/.-])(?:\.\./)*((?:docs|guidelines)/[A-Za-z0-9_./-]+?|MODELS\.md|CLI\.md)(?=[)`'\"\s#:,;]|\.(?:\s|$)|$)")
+# Text fixes applied to every bundled Markdown file. Each must match at
+# least once, so a fix that lands upstream fails the build and gets removed.
+SUBSTITUTIONS = [
+    # The install script moved with the repository; the old URL returns 404.
+    ("aleksei-oleinik/ugc-cli", "alecs5am/ralphy"),
+    # Check a voice through the CLI instead of sending the user's key with xh.
+    (
+        'xh GET "https://api.elevenlabs.io/v1/voices/<voice-id>" \\\n'
+        '  "xi-api-key:$ELEVENLABS_API_KEY" | jq .voice_id  # must not 404',
+        "ralphy voice list | jq -e '.voices[] | select(.voice_id == \"<voice-id>\")'"
+        "  # must match; add the voice to your ElevenLabs account first",
+    ),
+    # Document the header without reading the key from the environment.
+    ("xi-api-key: $ELEVENLABS_API_KEY,", "xi-api-key: <ElevenLabs key from `ralphy setup`>,"),
+]
 SKIP_NAMES = {".DS_Store", "Thumbs.db", "desktop.ini"}
 MAX_FILE = 256 * 1024
 
@@ -155,7 +170,18 @@ def main() -> None:
         if len(seen) == before:
             break
 
-    # 4. Provenance.
+    # 4. Text fixes.
+    for old, new in SUBSTITUTIONS:
+        hits = 0
+        for md in sorted(PLUGIN.rglob("*.md")):
+            text = md.read_text(encoding="utf-8")
+            if old in text:
+                hits += text.count(old)
+                md.write_text(text.replace(old, new), encoding="utf-8")
+        if not hits:
+            raise SystemExit(f"substitution no longer matches, remove it: {old[:60]!r}")
+
+    # 5. Provenance.
     (PLUGIN / "SOURCE.json").write_text(
         json.dumps({"repository": "https://github.com/alecs5am/ralphy", "commit": sha, "skills": included}, indent=2) + "\n",
         encoding="utf-8",

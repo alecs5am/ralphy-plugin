@@ -34,7 +34,7 @@ Decide the next step from the result:
 Run the install script from the repo:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/aleksei-oleinik/ugc-cli/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/alecs5am/ralphy/main/install.sh | sh
 ```
 
 This:
@@ -46,7 +46,7 @@ This:
 If the script reports "no published release" (the repo is fresh / private), fall back to:
 
 ```bash
-git clone https://github.com/aleksei-oleinik/ugc-cli.git ~/code/ugc-cli
+git clone https://github.com/alecs5am/ralphy.git ~/code/ugc-cli
 cd ~/code/ugc-cli
 bun install
 bun run build:bin -- --current
