@@ -1,7 +1,7 @@
 {
   "name": "ralphy",
   "displayName": "Ralphy",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Open-source content farm for coding agents: AI UGC videos, ads, posters, carousels, ad packs, clips and explainers, produced through the ralphy CLI with cost gates, quality evals and append-only project memory.",
   "author": {
     "name": "alecs5am",

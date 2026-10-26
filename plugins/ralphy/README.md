@@ -17,7 +17,8 @@ prompt guidelines).
 
 - The `ralphy` CLI: `brew install alecs5am/tap/ralphy` (macOS) or
   `npm install -g @alecs5am/ralphy`. The `install` skill walks through it.
-- Your own provider keys, configured with `ralphy setup`: OpenRouter (images, video, LLM)
+- CLI 0.4.0 or newer, initialized with `ralphy setup --non-interactive`; no source checkout is required.
+- Your own provider keys, exported before the CLI starts or stored with scoped `provider auth set <provider> --stdin`: OpenRouter (images, video, LLM)
   and ElevenLabs (voice, music). fal, Firecrawl, and Apify are optional.
 - `ffmpeg` and `bun` on your machine (the CLI checks with `ralphy doctor`).
 
@@ -43,8 +44,9 @@ the `ralphy` CLI, which the agent runs on your machine when you ask for content:
   or a Postiz connection) only when you configure that destination and explicitly ask to
   publish.
 - **Local storage.** Projects, generated media, prompts, and logs stay on your machine in a
-  hidden `.ralphy/` folder in your working directory. API keys are stored in your local
-  Ralphy config. Nothing is uploaded to the Ralphy authors.
+  hidden `.ralphy/` folder in your working directory or an explicit local data root.
+  Persisted provider keys use a scoped encrypted store backed by macOS Keychain;
+  inherited shell keys remain process-local. Nothing is uploaded to the Ralphy authors.
 
 ## Source
 
