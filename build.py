@@ -52,8 +52,6 @@ REF_PATTERN = re.compile(r"(?<![\w/.-])(?:\.\./)*((?:docs|guidelines)/[A-Za-z0-9
 # Text fixes applied to every bundled Markdown file. Each must match at
 # least once, so a fix that lands upstream fails the build and gets removed.
 SUBSTITUTIONS = [
-    # The install script moved with the repository; the old URL returns 404.
-    ("aleksei-oleinik/ugc-cli", "alecs5am/ralphy"),
     # Check a voice through the CLI instead of sending the user's key with xh.
     (
         'xh GET "https://api.elevenlabs.io/v1/voices/<voice-id>" \\\n'
@@ -62,7 +60,7 @@ SUBSTITUTIONS = [
         "  # must match; add the voice to your ElevenLabs account first",
     ),
     # Document the header without reading the key from the environment.
-    ("xi-api-key: $ELEVENLABS_API_KEY,", "xi-api-key: <ElevenLabs key from `ralphy setup`>,"),
+    ("xi-api-key: $ELEVENLABS_API_KEY,", "xi-api-key: <ElevenLabs account key>,"),
 ]
 SKIP_NAMES = {".DS_Store", "Thumbs.db", "desktop.ini"}
 MAX_FILE = 256 * 1024
