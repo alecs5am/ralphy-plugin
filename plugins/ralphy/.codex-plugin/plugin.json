@@ -2,10 +2,14 @@
   "name": "ralphy",
   "version": "0.4.0",
   "description": "Open-source content farm for coding agents: AI UGC videos, ads, posters, carousels, ad packs, clips and explainers, produced through the ralphy CLI.",
+  "author": {
+    "name": "alecs5am",
+    "url": "https://github.com/alecs5am"
+  },
   "skills": "./skills/",
   "interface": {
     "displayName": "Ralphy",
-    "shortDescription": "Make AI UGC videos, ads, posters and carousels with the ralphy CLI",
+    "shortDescription": "Videos, ads and posters",
     "longDescription": "Ralphy turns your coding agent into a content studio. Describe what you want in plain language; the agent drives the open-source ralphy CLI to research, script, generate images, video, voice and music with your own provider keys, render with HyperFrames, score the result against quality gates, and package finished deliverables.",
     "developerName": "alecs5am",
     "category": "Productivity",
