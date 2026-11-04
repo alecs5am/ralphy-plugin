@@ -92,6 +92,9 @@ Skip the **Product and repository ownership** and **Dev mode** sections of
   generation (the reference gate). Generic products and lifestyle work do not.
 - **Publishing to social platforms** happens only on the user's explicit publish or
   schedule wording (`social-publish` skill).
+- **Side panel.** When the user wants to watch jobs or browse trend references next to the
+  chat, load the `panel` skill. It starts `ralphy panel` only on that request and opens it
+  in the host's built-in browser.
 
 ## Reference layout
 

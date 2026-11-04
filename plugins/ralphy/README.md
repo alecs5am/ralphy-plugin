@@ -43,6 +43,10 @@ the `ralphy` CLI, which the agent runs on your machine when you ask for content:
 - **Publishing.** The CLI can post to blogs or social accounts (for example Hashnode, DEV,
   or a Postiz connection) only when you configure that destination and explicitly ask to
   publish.
+- **Side panel.** Only when you ask for it, the CLI serves a read-only page on
+  `127.0.0.1` (`ralphy panel`) for your agent's built-in browser. It shows your jobs and
+  trend references and loads YouTube thumbnails from `i.ytimg.com`. It is not reachable from
+  other machines and stops when the agent stops it.
 - **Local storage.** Projects, generated media, prompts, and logs stay on your machine in a
   hidden `.ralphy/` folder in your working directory or an explicit local data root.
   Persisted provider keys use a scoped encrypted store backed by macOS Keychain;
