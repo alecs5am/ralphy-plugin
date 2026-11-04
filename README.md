@@ -33,7 +33,7 @@ Then install the CLI the skills drive: `brew install alecs5am/tap/ralphy` or
 | `plugins/ralphy/` | The plugin: skills, reference docs, manifests for Claude (`.claude-plugin/`) and Codex (`.codex-plugin/`) |
 | `.claude-plugin/marketplace.json` | Claude Code marketplace entry |
 | `.agents/plugins/marketplace.json` | Codex marketplace entry |
-| `src/` | Hand-written plugin files: manifests, README, icon, the `ralphy` routing skill |
+| `src/` | Hand-written plugin files: manifests, README, icon, the `ralphy` routing skill, and skills for CLI features newer than the synced release (`panel`) |
 | `build.py`, `sync.sh` | Rebuild `plugins/ralphy/` from the Ralphy repository |
 
 ## Updating from Ralphy
@@ -45,7 +45,9 @@ uncommitted work in a local checkout never leaks in:
 ./sync.sh ../ralphy origin/main
 ```
 
-`plugins/ralphy/SOURCE.json` records the source commit. Bump `version` in both manifests
+`plugins/ralphy/SOURCE.json` records the source commit. A skill under `src/skills/` that also exists in the synced
+release is overwritten by the release copy; delete it from `src/` once that release ships
+(`panel` ships with the first release after v0.4.0). Bump `version` in both manifests
 under `src/` before publishing a new release.
 
 ## License
